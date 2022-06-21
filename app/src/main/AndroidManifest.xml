@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-          package="in.relsellglobal.firebasedatabasedemo">
+          package="com.relsellglobal.firebasedatabasedemo">
 
     <application
             android:allowBackup="true"
@@ -12,7 +12,7 @@
 
         <activity
             android:exported="true"
-            android:name=".MainActivityForWeatherData" android:label="WeatherDataDemo">
+            android:name="com.relsellglobal.firebasedatabasedemo.MainActivityForWeatherData" android:label="WeatherDataDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
