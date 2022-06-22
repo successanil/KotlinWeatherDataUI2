@@ -84,6 +84,12 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+    // for adding recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
+    // for adding cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+
 
 
 
