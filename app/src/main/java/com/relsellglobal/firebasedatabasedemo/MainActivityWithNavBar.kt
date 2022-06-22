@@ -24,7 +24,7 @@ class MainActivityWithNavBar : AppCompatActivity() {
         binding = ActivityMainWithNavBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMainActivityWithNavBar.toolbar)
+        //setSupportActionBar(binding.appBarMainActivityWithNavBar.toolbar)
 
         binding.appBarMainActivityWithNavBar.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -40,8 +40,8 @@ class MainActivityWithNavBar : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
             ), drawerLayout
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        //setupActionBarWithNavController(navController, appBarConfiguration)
+        //navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
