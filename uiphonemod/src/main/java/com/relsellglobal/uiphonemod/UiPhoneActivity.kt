@@ -20,8 +20,8 @@ class UiPhoneActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject
     lateinit var childFragment: ChildFragment
 
-//    @Inject
-//    lateinit var childDepedency : ChildDepedency
+    @Inject
+    lateinit var childDepedency : ChildDepedency
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,7 +29,7 @@ class UiPhoneActivity : AppCompatActivity(), HasAndroidInjector {
 
 
         setContentView(R.layout.activity_ui_phone)
-        //childDepedency.printMe()
+        childDepedency.printMe()
 //        startActivity(Intent(this@UiPhoneActivity,com.relsellglobal.progressbarlib.MainActivity::class.java))
         supportFragmentManager.beginTransaction().replace(R.id.rtlLayout,ChildFragment()).commit()
 
