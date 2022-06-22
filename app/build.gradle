@@ -13,7 +13,7 @@ def localProperties = new Properties()
 android {
     compileSdkVersion 32
     defaultConfig {
-        applicationId "in.relsellglobal.firebasedatabasedemo"
+        applicationId "com.relsellglobal.firebasedatabasedemo"
         minSdkVersion 26
         targetSdkVersion 32
         versionCode 1

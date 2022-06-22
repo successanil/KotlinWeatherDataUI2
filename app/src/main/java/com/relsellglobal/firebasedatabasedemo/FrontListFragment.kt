@@ -4,6 +4,7 @@
 
 package com.relsellglobal.firebasedatabasedemo
 
+import android.content.Context
 import com.relsellglobal.firebasedatabasedemo.databinding.FragmentItemListBinding
 import com.relsellglobal.firebasedatabasedemo.viewmodels.CitiesViewModel
 import android.os.Bundle
@@ -13,8 +14,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 
 /**
@@ -22,7 +27,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Activities containing this fragment MUST implement the
  * [FrontListFragment.OnListFragmentInteractionListener] interface.
  */
-class FrontListFragment : Fragment() {
+class FrontListFragment @Inject constructor() : DaggerFragment() {
 
     // TODO: Customize parameters
     private var columnCount = 1
@@ -41,6 +46,11 @@ class FrontListFragment : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,13 +61,13 @@ class FrontListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        recyclerView!!.layoutManager = LinearLayoutManager(activity);
+        recyclerView!!.layoutManager = GridLayoutManager(activity,2,GridLayoutManager.VERTICAL,false);
         var model =
             ViewModelProvider(this)[CitiesViewModel::class.java]
-        model.getCitiesList().observe(this, androidx.lifecycle.Observer { cityContentList ->
+        model.getCitiesList().observe(viewLifecycleOwner, androidx.lifecycle.Observer { cityContentList ->
             myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
             recyclerView!!.adapter = myItemRecyclerViewAdapter
 

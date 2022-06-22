@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:638294128850:android:66f2674ab75d3798",
         "android_client_info": {
-          "package_name": "in.relsellglobal.firebasedatabasedemo"
+          "package_name": "com.relsellglobal.firebasedatabasedemo"
         }
       },
       "oauth_client": [
