@@ -1,5 +1,6 @@
 package com.relsellglobal.firebasedatabasedemo.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.relsellglobal.firebasedatabasedemo.R
 import com.relsellglobal.firebasedatabasedemo.databinding.FragmentHomeBinding
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class HomeFragment : Fragment() {
+class HomeFragment @Inject constructor(): DaggerFragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -37,6 +41,11 @@ class HomeFragment : Fragment() {
             //textView.text = it
         }
         return root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
