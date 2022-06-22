@@ -26,6 +26,8 @@ class MainActivityWithNavBar : AppCompatActivity() {
 
         //setSupportActionBar(binding.appBarMainActivityWithNavBar.toolbar)
 
+        binding.appBarMainActivityWithNavBar.
+
         binding.appBarMainActivityWithNavBar.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
