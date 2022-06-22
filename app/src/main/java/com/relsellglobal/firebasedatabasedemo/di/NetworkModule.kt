@@ -1,7 +1,7 @@
 package com.relsellglobal.firebasedatabasedemo.di
 
-import com.relsellglobal.firebasedatabasedemo.repository.network.WeatherHerokuApiService
 import com.relsellglobal.firebasedatabasedemo.utils.AppConstants
+import com.relsellglobal.networklib.apiservice.WeatherHerokuApiService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

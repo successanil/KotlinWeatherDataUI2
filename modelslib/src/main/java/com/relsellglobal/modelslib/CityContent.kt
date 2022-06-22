@@ -1,4 +1,4 @@
-package com.relsellglobal.firebasedatabasedemo.models
+package com.relsellglobal.modelslib
 
 import android.os.Parcel
 import android.os.Parcelable

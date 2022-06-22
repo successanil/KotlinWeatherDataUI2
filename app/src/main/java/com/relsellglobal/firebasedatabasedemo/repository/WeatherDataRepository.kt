@@ -1,9 +1,11 @@
 package com.relsellglobal.firebasedatabasedemo.repository
 
-import com.relsellglobal.firebasedatabasedemo.models.CityContentDetailNetwork
-import com.relsellglobal.firebasedatabasedemo.models.CityContentNetwork
-import com.relsellglobal.firebasedatabasedemo.repository.network.WeatherHerokuApiService
+
+
 import androidx.lifecycle.MutableLiveData
+import com.relsellglobal.modelslib.CityContentDetailNetwork
+import com.relsellglobal.modelslib.CityContentNetwork
+import com.relsellglobal.networklib.apiservice.WeatherHerokuApiService
 import javax.inject.Inject
 
 class WeatherDataRepository @Inject constructor(private val weatherHerokuApiService: WeatherHerokuApiService) {

@@ -1,4 +1,4 @@
-package com.relsellglobal.firebasedatabasedemo.models
+package com.relsellglobal.modelslib
 
 import com.google.gson.annotations.SerializedName
 

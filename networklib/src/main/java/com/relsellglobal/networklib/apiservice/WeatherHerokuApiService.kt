@@ -1,7 +1,7 @@
-package com.relsellglobal.firebasedatabasedemo.repository.network
+package com.relsellglobal.networklib.apiservice
 
-import com.relsellglobal.firebasedatabasedemo.models.CityContentDetailNetwork
-import com.relsellglobal.firebasedatabasedemo.models.CityContentNetwork
+import com.relsellglobal.modelslib.CityContentDetailNetwork
+import com.relsellglobal.modelslib.CityContentNetwork
 import retrofit2.http.GET
 import retrofit2.http.Query
 
