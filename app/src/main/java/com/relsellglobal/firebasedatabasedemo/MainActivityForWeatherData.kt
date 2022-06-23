@@ -9,6 +9,8 @@ import com.relsellglobal.firebasedatabasedemo.databinding.ActivityMainListviewRo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.relsellglobal.firebasedatabasedemo.helpers.FragmentLaunchBackHelpers
+import com.relsellglobal.firebasedatabasedemo.ui.addcity.AddCityFragment
 import com.relsellglobal.localdblib.database.CityDatabase
 import com.relsellglobal.localdblib.entities.CityContentDB
 import com.relsellglobal.modelslib.CityContent
@@ -32,6 +34,10 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
     lateinit var frontListFragment : FrontListFragment
 
 
+    @Inject
+    lateinit var addCityFragment : AddCityFragment
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this);
@@ -39,11 +45,12 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main_listview_root)
 
+        if(savedInstanceState == null) {
+//            FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root, supportFragmentManager, frontListFragment)
+            FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root, supportFragmentManager, addCityFragment)
+        }
 
-        val fragmentManager = supportFragmentManager
-        val fT = fragmentManager.beginTransaction()
-        fT.replace(R.id.root,frontListFragment)
-        fT.commit()
+
 
 
 
