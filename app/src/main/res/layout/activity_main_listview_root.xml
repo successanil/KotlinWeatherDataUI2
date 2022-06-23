@@ -5,6 +5,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/root"
+        android:background="@drawable/main_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

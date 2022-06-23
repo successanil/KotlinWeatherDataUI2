@@ -4,6 +4,7 @@ package com.relsellglobal.firebasedatabasedemo.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.relsellglobal.localdblib.database.CityDatabase
+import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.localdblib.entities.CityContentDB
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork
@@ -31,6 +32,10 @@ cityDatabase: CityDatabase) {
 
     suspend fun insertDataIntoCityDatabase() {
         cityDatabase.cityContentDao().insertCityContent(CityContentDB(0,"gurgaon","{}"))
+    }
+
+    suspend fun insertDataIntoCitiesForUser() {
+        cityDatabase.citiesForUserDao().insertCityByUser(CitiesForUser(0,"jamshedpur"))
     }
 
 

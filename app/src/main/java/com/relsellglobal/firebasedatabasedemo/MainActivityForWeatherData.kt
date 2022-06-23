@@ -31,8 +31,6 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
     @Inject
     lateinit var frontListFragment : FrontListFragment
 
-    @Inject
-    lateinit var database : CityDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +39,6 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main_listview_root)
 
-        triggerDBDemoCall()
 
         val fragmentManager = supportFragmentManager
         val fT = fragmentManager.beginTransaction()
@@ -53,11 +50,6 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
 
     }
 
-    fun triggerDBDemoCall () {
-        CoroutineScope(Dispatchers.IO).launch {
-            database.cityContentDao().insertCityContent(CityContentDB(0,"delhi","{}"))
-        }
-    }
 
     fun launchDetailFragment(item: CityContent) {
         val fragmentManager = supportFragmentManager

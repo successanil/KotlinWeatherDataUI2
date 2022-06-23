@@ -44,4 +44,8 @@ class CitiesViewModel(private val weatherDataRepository: WeatherDataRepository) 
     suspend fun insertDataIntoCityDatabase() {
         weatherDataRepository.insertDataIntoCityDatabase()
     }
+
+    suspend fun insertDataIntoCitiesForUser() {
+        weatherDataRepository.insertDataIntoCitiesForUser()
+    }
 }
