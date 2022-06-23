@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.relsellglobal.firebasedatabasedemo.MyApplication
 import com.relsellglobal.firebasedatabasedemo.R
+import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -22,10 +23,11 @@ class HomeActivity : AppCompatActivity(),HasAndroidInjector {
     lateinit var homeFragment: HomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        (applicationContext as MyApplication).appComponent.inject(this)
+//        (applicationContext as MyApplication).appComponent.inject(this)
 
 
 

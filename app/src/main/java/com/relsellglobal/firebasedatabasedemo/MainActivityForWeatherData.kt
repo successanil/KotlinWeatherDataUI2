@@ -14,9 +14,15 @@ import com.relsellglobal.firebasedatabasedemo.pojo.CityContent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.relsellglobal.localdblib.database.CityDatabase
+import com.relsellglobal.localdblib.entities.CityContentDB
+import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
@@ -29,12 +35,17 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
     @Inject
     lateinit var frontListFragment : FrontListFragment
 
+    @Inject
+    lateinit var database : CityDatabase
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (applicationContext as MyApplication).appComponent.inject(this)
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main_listview_root)
+
+        triggerDBDemoCall()
 
         val fragmentManager = supportFragmentManager
         val fT = fragmentManager.beginTransaction()
@@ -44,6 +55,12 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
 
 
 
+    }
+
+    fun triggerDBDemoCall () {
+        CoroutineScope(Dispatchers.IO).launch {
+            database.cityContentDao().insertCityContent(CityContentDB(0,"delhi","{}"))
+        }
     }
 
     fun launchDetailFragment(item: CityContent) {

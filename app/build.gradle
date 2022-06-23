@@ -110,6 +110,7 @@ dependencies {
     implementation project(":progressbarlib")
     implementation project(":modelslib")
     implementation project(":networklib")
+    implementation project(":localdblib")
 
 
 

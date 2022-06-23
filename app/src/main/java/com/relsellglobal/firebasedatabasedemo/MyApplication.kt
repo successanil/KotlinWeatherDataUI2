@@ -3,6 +3,7 @@ package com.relsellglobal.firebasedatabasedemo
 import android.app.Application
 import com.relsellglobal.firebasedatabasedemo.di.AppComponent
 import com.relsellglobal.firebasedatabasedemo.di.DaggerAppComponent
+import com.relsellglobal.firebasedatabasedemo.di.LocalDBMod
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -22,7 +23,12 @@ class MyApplication : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
 
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent
+            .builder()
+            .localDBMod(LocalDBMod(this))
+            .build()
+
+        appComponent.inject(this)
 
     }
 
