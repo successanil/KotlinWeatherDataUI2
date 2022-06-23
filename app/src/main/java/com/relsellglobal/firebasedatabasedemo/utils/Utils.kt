@@ -1,7 +1,12 @@
 package com.relsellglobal.firebasedatabasedemo.utils
 
+import android.content.Context
+import androidx.work.*
+import com.relsellglobal.firebasedatabasedemo.MyApplication
+import com.relsellglobal.firebasedatabasedemo.worker.DefCityWorker
 import com.relsellglobal.modelslib.CityContent
 import com.relsellglobal.modelslib.CityContentNetwork
+import java.util.concurrent.TimeUnit
 
 class Utils {
     companion object {
@@ -19,5 +24,14 @@ class Utils {
             return retList
 
         }
+
+        fun setUpWorkerForDefaultCityFetch(context: Context) {
+            val constraint = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+            val workerRequest = OneTimeWorkRequest.Builder(DefCityWorker::class.java)
+                .setConstraints(constraint).build()
+
+            WorkManager.getInstance(context).enqueue(workerRequest)
+        }
+
     }
 }

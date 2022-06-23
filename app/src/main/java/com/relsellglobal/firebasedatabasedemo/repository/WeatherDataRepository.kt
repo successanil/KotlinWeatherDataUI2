@@ -38,5 +38,17 @@ cityDatabase: CityDatabase) {
         cityDatabase.citiesForUserDao().insertCityByUser(CitiesForUser(0,"jamshedpur"))
     }
 
+    suspend fun insertDataIntoCitiesForUserFromNetwork() {
+        var result = weatherHerokuApiService.getWeatherDataCityListForWorkManager()
+
+        if(result.body() != null) {
+            for(cityContentNetwork in result.body()!!){
+                cityDatabase.citiesForUserDao().insertCityByUser(CitiesForUser(0,cityContentNetwork.cityName))
+            }
+
+        }
+
+    }
+
 
 }

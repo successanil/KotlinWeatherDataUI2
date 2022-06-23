@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.relsellglobal.firebasedatabasedemo.helpers.FragmentLaunchBackHelpers
 import com.relsellglobal.firebasedatabasedemo.ui.addcity.AddCityFragment
+import com.relsellglobal.firebasedatabasedemo.utils.Utils
 import com.relsellglobal.localdblib.database.CityDatabase
 import com.relsellglobal.localdblib.entities.CityContentDB
 import com.relsellglobal.modelslib.CityContent
@@ -46,15 +47,33 @@ class MainActivityForWeatherData : AppCompatActivity(),HasAndroidInjector {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main_listview_root)
 
         if(savedInstanceState == null) {
-//            FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root, supportFragmentManager, frontListFragment)
-            FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root, supportFragmentManager, addCityFragment)
+            launchFrontListFragment()
+            //launchAddCityFragment()
         }
 
+        // This only be called for new application when db is not there
+        // add user prefs here
+        //setupWorkerForDefaultCities()
 
 
 
 
 
+
+    }
+
+    private fun setupWorkerForDefaultCities() {
+        Utils.setUpWorkerForDefaultCityFetch(MyApplication.getMyApplicationObj().applicationContext)
+    }
+
+    fun launchFrontListFragment() {
+        val b = Bundle()
+        FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root,supportFragmentManager,frontListFragment,false,b)
+    }
+
+    fun launchAddCityFragment() {
+        val b = Bundle()
+        FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root,supportFragmentManager,addCityFragment,true,b)
     }
 
 
