@@ -6,7 +6,6 @@ package com.relsellglobal.firebasedatabasedemo
 
 
 import com.relsellglobal.firebasedatabasedemo.databinding.FragmentItemBinding
-import com.relsellglobal.firebasedatabasedemo.pojo.CityContent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,8 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.relsellglobal.modelslib.CityContent
+import com.relsellglobal.modelslib.CityContentNetwork
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the

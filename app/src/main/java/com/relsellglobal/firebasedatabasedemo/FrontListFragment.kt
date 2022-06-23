@@ -17,8 +17,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.relsellglobal.firebasedatabasedemo.utils.Utils
+import com.relsellglobal.firebasedatabasedemo.viewmodels.CityViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -36,6 +41,9 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
     private var myItemRecyclerViewAdapter : MyItemRecyclerViewAdapter? = null
 
     private lateinit var binding : FragmentItemListBinding
+
+    @Inject
+    lateinit var cityViewModelFactory: CityViewModelFactory
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,13 +73,24 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView!!.layoutManager = GridLayoutManager(activity,2,GridLayoutManager.VERTICAL,false);
-        var model =
-            ViewModelProvider(this)[CitiesViewModel::class.java]
-        model.getCitiesList().observe(viewLifecycleOwner, androidx.lifecycle.Observer { cityContentList ->
-            myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
-            recyclerView!!.adapter = myItemRecyclerViewAdapter
+//        var model =
+//            ViewModelProvider(this)[CitiesViewModel::class.java]
+        var model = ViewModelProvider(requireActivity(), cityViewModelFactory).get(CitiesViewModel::class.java)
 
-        })
+        CoroutineScope(Dispatchers.Main).launch{
+            model.getCitiesList().observe(viewLifecycleOwner, androidx.lifecycle.Observer { cityContentNetworkList ->
+                var cityContentList = Utils.mappingCityContentNetworkToCityContent(cityContentNetworkList)
+
+                myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
+                recyclerView!!.adapter = myItemRecyclerViewAdapter
+
+            })
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            model.insertDataIntoCityDatabase()
+        }
+
 
 
     }

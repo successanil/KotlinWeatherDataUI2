@@ -6,12 +6,12 @@
 package com.relsellglobal.firebasedatabasedemo
 
 import com.relsellglobal.firebasedatabasedemo.databinding.ActivityMainListviewRootBinding
-import com.relsellglobal.firebasedatabasedemo.pojo.CityContent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.relsellglobal.localdblib.database.CityDatabase
 import com.relsellglobal.localdblib.entities.CityContentDB
+import com.relsellglobal.modelslib.CityContent
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

@@ -1,21 +1,22 @@
 package com.relsellglobal.firebasedatabasedemo.viewmodels
 
-import com.relsellglobal.firebasedatabasedemo.BuildConfig
-import com.relsellglobal.firebasedatabasedemo.pojo.CityContent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.relsellglobal.firebasedatabasedemo.repository.WeatherDataRepository
+import com.relsellglobal.modelslib.CityContentDetailNetwork
+import com.relsellglobal.modelslib.CityContentNetwork
 
 
-class CitiesViewModel : ViewModel() {
-    val APPID =
-        BuildConfig.OPENWEATHERDATA_API_KEY
-
-    private lateinit var citiesContent: MutableLiveData<List<CityContent>>
+class CitiesViewModel(private val weatherDataRepository: WeatherDataRepository) : ViewModel() {
 
 
+    private lateinit var citiesContent: MutableLiveData<List<CityContentNetwork>>
 
-    fun getCitiesList(): LiveData<List<CityContent>> {
+    private lateinit var cityContentNetworkDetail: MutableLiveData<CityContentDetailNetwork>
+
+
+    suspend fun getCitiesList(): LiveData<List<CityContentNetwork>> {
         if (!::citiesContent.isInitialized) {
             citiesContent = MutableLiveData()
             loadCities()
@@ -23,55 +24,24 @@ class CitiesViewModel : ViewModel() {
         return citiesContent
     }
 
+    suspend fun getCityDetail(cityName: String): LiveData<CityContentDetailNetwork> {
+//        if (!::cityContentNetworkDetail.isInitialized) {
+        cityContentNetworkDetail = MutableLiveData()
+        fetchTempretureForCity(cityName)
+//        }
+        return cityContentNetworkDetail
+    }
 
 
-    private fun loadCities() {
-        val listOfCities = mutableListOf<CityContent>()
-        var city = CityContent()
-        city.cityName = "dehradun"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
+    private suspend fun loadCities() {
+        citiesContent = weatherDataRepository.getWeatherDataCityList()
+    }
 
-        city = CityContent()
-        city.cityName = "new delhi"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
+    private suspend fun fetchTempretureForCity(cityName: String) {
+        cityContentNetworkDetail = weatherDataRepository.fetchTempretureForCity(cityName)
+    }
 
-
-        city = CityContent()
-        city.cityName = "hyderabad"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
-
-
-        city = CityContent()
-        city.cityName = "chennai"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
-
-
-        city = CityContent()
-        city.cityName = "mumbai"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
-
-        city = CityContent()
-        city.cityName = "mangalore"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
-
-        city = CityContent()
-        city.cityName = "dispur"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
-
-
-        city = CityContent()
-        city.cityName = "indore"
-        city.apiUrl =  "http://api.openweathermap.org/data/2.5/weather?q="+city.cityName+"&appid="+APPID
-        listOfCities.add(city)
-
-        citiesContent.value = listOfCities
-
+    suspend fun insertDataIntoCityDatabase() {
+        weatherDataRepository.insertDataIntoCityDatabase()
     }
 }
