@@ -7,7 +7,7 @@ import com.relsellglobal.localdblib.dao.CityContentDao
 import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.localdblib.entities.CityContentDB
 
-@Database(entities = [CityContentDB::class,CitiesForUser::class],version = 1)
+@Database(entities = [CityContentDB::class,CitiesForUser::class],version = 1, exportSchema = false)
 abstract class CityDatabase : RoomDatabase(){
     abstract fun cityContentDao() : CityContentDao
     abstract fun citiesForUserDao() : CitiesForUserDao

@@ -2,6 +2,7 @@ package com.relsellglobal.firebasedatabasedemo.repository
 
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.relsellglobal.localdblib.database.CityDatabase
 import com.relsellglobal.localdblib.entities.CitiesForUser
@@ -48,6 +49,11 @@ cityDatabase: CityDatabase) {
 
         }
 
+    }
+
+    fun getAllCitiesForLocalDB() : LiveData<List<CitiesForUser>> {
+        var list = cityDatabase.citiesForUserDao().getAllCityContent()
+        return list
     }
 
 

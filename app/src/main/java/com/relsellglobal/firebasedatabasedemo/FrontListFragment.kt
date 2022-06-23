@@ -73,19 +73,16 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView!!.layoutManager = GridLayoutManager(activity,2,GridLayoutManager.VERTICAL,false);
-//        var model =
-//            ViewModelProvider(this)[CitiesViewModel::class.java]
+
         var model = ViewModelProvider(requireActivity(), cityViewModelFactory).get(CitiesViewModel::class.java)
 
-//        CoroutineScope(Dispatchers.Main).launch{
-//            model.getCitiesList().observe(viewLifecycleOwner, androidx.lifecycle.Observer { cityContentNetworkList ->
-//                var cityContentList = Utils.mappingCityContentNetworkToCityContent(cityContentNetworkList)
-//
-//                myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
-//                recyclerView!!.adapter = myItemRecyclerViewAdapter
-//
-//            })
-//        }
+        model.getAllCitiesForLocalDB().observe(viewLifecycleOwner,{ listOfCitiesForUser ->
+            var cityContentList = Utils.mappingCitiesForUserToCityContent(listOfCitiesForUser)
+            myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
+            recyclerView!!.adapter = myItemRecyclerViewAdapter
+        })
+
+
 
         CoroutineScope(Dispatchers.IO).launch {
             model.insertDataIntoCityDatabase()
@@ -118,4 +115,16 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
                 }
             }
     }
+}
+
+fun fetchCitiesfromNetwork() {
+    //        CoroutineScope(Dispatchers.Main).launch{
+//            model.getCitiesList().observe(viewLifecycleOwner, androidx.lifecycle.Observer { cityContentNetworkList ->
+//                var cityContentList = Utils.mappingCityContentNetworkToCityContent(cityContentNetworkList)
+//
+//                myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
+//                recyclerView!!.adapter = myItemRecyclerViewAdapter
+//
+//            })
+//        }
 }

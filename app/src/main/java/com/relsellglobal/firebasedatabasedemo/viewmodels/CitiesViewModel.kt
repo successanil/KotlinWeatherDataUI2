@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.relsellglobal.firebasedatabasedemo.repository.WeatherDataRepository
+import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork
 
@@ -48,4 +49,9 @@ class CitiesViewModel(private val weatherDataRepository: WeatherDataRepository) 
     suspend fun insertDataIntoCitiesForUser() {
         weatherDataRepository.insertDataIntoCitiesForUser()
     }
+
+    fun getAllCitiesForLocalDB() : LiveData<List<CitiesForUser>> {
+        return weatherDataRepository.getAllCitiesForLocalDB()
+    }
+
 }
