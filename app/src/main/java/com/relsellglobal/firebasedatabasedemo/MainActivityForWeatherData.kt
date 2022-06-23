@@ -2,10 +2,6 @@
  * Copyright (c) 2019. Relsell Global
  */
 
-/*
- * Copyright (c) 2019. Relsell Global
- */
-
 
 package com.relsellglobal.firebasedatabasedemo
 
