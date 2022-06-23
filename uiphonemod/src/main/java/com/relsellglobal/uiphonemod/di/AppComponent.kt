@@ -9,9 +9,10 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules=[
     AndroidInjectionModule::class,
+    ActivitiesContributerModule::class,
     MultiMods::class,
+    LocalDBMod::class,
     FragmentContributerModule::class])
 interface AppComponent {
-    fun inject(app:UiPhoneActivity)
-
+    fun inject2(applicationClass: UiApplicationClass)
 }

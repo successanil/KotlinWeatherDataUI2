@@ -6,11 +6,16 @@ import android.os.Bundle
 import com.relsellglobal.progressbarlib.ChildDepedency
 import javax.inject.Inject
 import android.util.Log
+import com.relsellglobal.localdblib.database.CityDatabase
+import com.relsellglobal.localdblib.entities.CityContentDB
 import com.relsellglobal.progressbarlib.ChildFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UiPhoneActivity : AppCompatActivity(), HasAndroidInjector {
 
@@ -21,18 +26,32 @@ class UiPhoneActivity : AppCompatActivity(), HasAndroidInjector {
     lateinit var childFragment: ChildFragment
 
     @Inject
+    lateinit var database : CityDatabase
+
+    @Inject
     lateinit var childDepedency : ChildDepedency
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-
-        (applicationContext as UiApplicationClass).applicationComponent.inject(this)
 
 
         setContentView(R.layout.activity_ui_phone)
         childDepedency.printMe()
+
+        triggerDBDemoCall()
+
+
+
+
 //        startActivity(Intent(this@UiPhoneActivity,com.relsellglobal.progressbarlib.MainActivity::class.java))
         supportFragmentManager.beginTransaction().replace(R.id.rtlLayout,ChildFragment()).commit()
 
+    }
+
+    fun triggerDBDemoCall () {
+        CoroutineScope(Dispatchers.IO).launch {
+            database.cityContentDao().insertCityContent(CityContentDB(0,"dehradun","{}"))
+        }
     }
 
     override fun androidInjector(): AndroidInjector<Any> {
