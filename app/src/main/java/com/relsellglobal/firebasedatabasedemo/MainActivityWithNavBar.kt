@@ -16,9 +16,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.relsellglobal.firebasedatabasedemo.databinding.ActivityMainWithNavBarBinding
+import com.relsellglobal.firebasedatabasedemo.helpers.FragmentLaunchBackHelpers
+import com.relsellglobal.firebasedatabasedemo.ui.addcity.AddCityFragment
+import com.relsellglobal.firebasedatabasedemo.utils.Utils
+import com.relsellglobal.modelslib.CityContent
 import com.relsellglobal.modelslib.drawer.DrawerItem
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class MainActivityWithNavBar : AppCompatActivity() {
+class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
+
+    @Inject
+    lateinit var mInjector: DispatchingAndroidInjector<Any>
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainWithNavBarBinding
@@ -29,8 +41,16 @@ class MainActivityWithNavBar : AppCompatActivity() {
     var drawer: DrawerLayout ?= null
     var toolbar: Toolbar? = null
 
+    @Inject
+    lateinit var frontListFragment : FrontListFragment
+
+
+    @Inject
+    lateinit var addCityFragment : AddCityFragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainWithNavBarBinding.inflate(layoutInflater)
@@ -77,6 +97,43 @@ class MainActivityWithNavBar : AppCompatActivity() {
         //setupActionBarWithNavController(navController, appBarConfiguration)
         //navView.setupWithNavController(navController)
         mDrawerToggle?.syncState()
+
+        if(savedInstanceState == null) {
+            launchFrontListFragment()
+        }
+
+
+    }
+
+    private fun setupWorkerForDefaultCities() {
+        Utils.setUpWorkerForDefaultCityFetch(MyApplication.getMyApplicationObj().applicationContext)
+    }
+
+    fun launchFrontListFragment() {
+        val b = Bundle()
+        FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root,supportFragmentManager,frontListFragment,false,b)
+    }
+
+    fun launchAddCityFragment() {
+        val b = Bundle()
+        FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root,supportFragmentManager,addCityFragment,true,b)
+    }
+
+
+    fun launchDetailFragment(item: CityContent) {
+        val fragmentManager = supportFragmentManager
+        val fT = fragmentManager.beginTransaction()
+        val detailFragment = DetailFragment()
+        val b = Bundle()
+        b.putParcelable("cityContent",item);
+        detailFragment.arguments = b
+        fT.replace(R.id.root,detailFragment)
+        fT.addToBackStack(null)
+        fT.commit()
+    }
+
+    override fun androidInjector(): AndroidInjector<Any> {
+        return mInjector;
     }
 
 

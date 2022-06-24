@@ -74,6 +74,8 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
 
         recyclerView!!.layoutManager = GridLayoutManager(activity,2,GridLayoutManager.VERTICAL,false);
 
+        recyclerView?.addItemDecoration(SpacesItemDecoration(16));
+
         var model = ViewModelProvider(requireActivity(), cityViewModelFactory).get(CitiesViewModel::class.java)
 
         model.getAllCitiesForLocalDB().observe(viewLifecycleOwner,{ listOfCitiesForUser ->
