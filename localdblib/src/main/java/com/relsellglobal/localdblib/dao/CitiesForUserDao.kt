@@ -15,6 +15,6 @@ interface CitiesForUserDao {
     @Delete
     suspend fun deleteCityContent(cityContentDB: CitiesForUser)
 
-    @Query("Select Distinct id,cityName From citiesForUser")
+    @Query("SELECT DISTINCT cityName,id From citiesForUser ORDER BY cityName")
     fun getAllCityContent() : LiveData<List<CitiesForUser>>
 }
