@@ -12,13 +12,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.relsellglobal.firebasedatabasedemo.utils.Utils
-import com.relsellglobal.firebasedatabasedemo.viewmodels.CityViewModelFactory
+import com.relsellglobal.firebasedatabasedemo.viewmodels.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +41,7 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
     private lateinit var binding : FragmentItemListBinding
 
     @Inject
-    lateinit var cityViewModelFactory: CityViewModelFactory
+    lateinit var cityViewModelFactory: ViewModelFactory
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

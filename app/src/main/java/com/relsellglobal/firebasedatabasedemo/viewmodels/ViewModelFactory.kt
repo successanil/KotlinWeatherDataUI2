@@ -5,9 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.relsellglobal.firebasedatabasedemo.repository.WeatherDataRepository
 import javax.inject.Inject
 
-class CityViewModelFactory @Inject constructor(private val weatherDataRepository: WeatherDataRepository):
+class ViewModelFactory @Inject constructor(private val weatherDataRepository: WeatherDataRepository):
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CitiesViewModel(weatherDataRepository) as T
+        if(modelClass == CitiesViewModel::class.java) {
+            return CitiesViewModel(weatherDataRepository) as T
+        } else {
+            throw IllegalStateException("Unknown Entity")
+        }
+
     }
 }

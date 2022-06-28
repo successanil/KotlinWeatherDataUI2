@@ -5,27 +5,19 @@
 package com.relsellglobal.firebasedatabasedemo.ui.addcity
 
 import android.content.Context
-import com.relsellglobal.firebasedatabasedemo.databinding.FragmentItemListBinding
 import com.relsellglobal.firebasedatabasedemo.viewmodels.CitiesViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.relsellglobal.firebasedatabasedemo.R
 import com.relsellglobal.firebasedatabasedemo.databinding.FragmentAddCityBinding
-import com.relsellglobal.firebasedatabasedemo.utils.Utils
-import com.relsellglobal.firebasedatabasedemo.viewmodels.CityViewModelFactory
+import com.relsellglobal.firebasedatabasedemo.viewmodels.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -45,7 +37,7 @@ class AddCityFragment @Inject constructor() : DaggerFragment() {
     private lateinit var binding : FragmentAddCityBinding
 
     @Inject
-    lateinit var cityViewModelFactory: CityViewModelFactory
+    lateinit var cityViewModelFactory: ViewModelFactory
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
