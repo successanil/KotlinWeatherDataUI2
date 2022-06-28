@@ -43,6 +43,30 @@ class Utils {
                 .setConstraints(constraint).build()
 
             WorkManager.getInstance(context).enqueue(workerRequest)
+
+            setUpKeyForInitialWorker(true,"setupWorkerForDefaultCities")
+
+
+        }
+
+        fun setUpKeyForInitialWorker(b: Boolean,keyName:String) {
+            setupBooleanKeyInSharedPreference(b,keyName)
+        }
+
+        fun setupBooleanKeyInSharedPreference (b:Boolean,keyName: String) {
+            var sp = MyApplication.getMyApplicationObj().getSharePref()
+            var editor = sp.edit()
+            editor.putBoolean(keyName,b)
+            editor.commit()
+        }
+
+        fun getKeyForInitialWorker(boolKey: String) : Boolean{
+            return getBooleanFromSp(boolKey)
+        }
+
+        fun getBooleanFromSp(boolKey : String) : Boolean {
+            var sp = MyApplication.getMyApplicationObj().getSharePref()
+            return sp.getBoolean(boolKey,false)
         }
 
     }

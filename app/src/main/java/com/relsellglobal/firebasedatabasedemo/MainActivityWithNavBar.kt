@@ -85,6 +85,7 @@ class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
         }
 
         drawerRV = binding.drawerRV
+        setupWorkerForDefaultCities()
 //        val navView: NavigationView = binding.navView
 //        val navController = findNavController(R.id.nav_host_fragment_content_main_activity_with_nav_bar)
 //        // Passing each menu ID as a set of Ids because each
@@ -106,7 +107,9 @@ class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
     }
 
     private fun setupWorkerForDefaultCities() {
-        Utils.setUpWorkerForDefaultCityFetch(MyApplication.getMyApplicationObj().applicationContext)
+        if(!Utils.getKeyForInitialWorker("setupWorkerForDefaultCities")) {
+            Utils.setUpWorkerForDefaultCityFetch(MyApplication.getMyApplicationObj().applicationContext)
+        }
     }
 
     fun launchFrontListFragment() {

@@ -1,6 +1,7 @@
 package com.relsellglobal.firebasedatabasedemo
 
 import android.app.Application
+import android.content.SharedPreferences
 import com.relsellglobal.firebasedatabasedemo.di.AppComponent
 import com.relsellglobal.firebasedatabasedemo.di.DaggerAppComponent
 import com.relsellglobal.firebasedatabasedemo.di.LocalDBMod
@@ -18,6 +19,8 @@ class MyApplication : Application(), HasAndroidInjector {
     lateinit var weatherDataRepository: WeatherDataRepository
 
     lateinit var appComponent: AppComponent
+
+    var sp : SharedPreferences ?= null
 
     override fun androidInjector(): AndroidInjector<Any> {
         return mInjector
@@ -38,12 +41,26 @@ class MyApplication : Application(), HasAndroidInjector {
 
     }
 
+    fun getSharePref() : SharedPreferences {
+        if(sp == null) {
+            initializeSp()
+        }
+        return sp!!
+    }
+
+    fun initializeSp()  {
+        sp = myApplication?.getSharedPreferences("MySharedPref", MODE_APPEND)
+    }
+
     companion object {
         var myApplication : MyApplication ?= null
+
 
         fun getMyApplicationObj () : MyApplication {
             return myApplication!!
         }
+
+
     }
 
 }
