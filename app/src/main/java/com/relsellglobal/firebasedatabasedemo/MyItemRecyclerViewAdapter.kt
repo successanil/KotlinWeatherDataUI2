@@ -39,8 +39,13 @@ class MyItemRecyclerViewAdapter(
         holder.mContentView.text = item.cityName
         holder.mView.setOnClickListener({
             //lets do some thing
-            val des = activity as MainActivityForWeatherData
-            des.launchDetailFragment(item)
+            try {
+
+                val des = if(activity is MainActivityWithNavBar) activity else null
+                des?.launchDetailFragment(item)
+            } catch (e:Exception) {
+                e.printStackTrace()
+            }
 
 
         })
