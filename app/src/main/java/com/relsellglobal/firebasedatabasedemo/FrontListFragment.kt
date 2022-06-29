@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.relsellglobal.firebasedatabasedemo.utils.Utils
 import com.relsellglobal.firebasedatabasedemo.viewmodels.ViewModelFactory
+import com.relsellglobal.modelslib.CityContent
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.CoroutineScope
@@ -42,6 +43,8 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
 
     @Inject
     lateinit var cityViewModelFactory: ViewModelFactory
+
+    var mCityContentList = ArrayList<CityContent>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,12 +77,23 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
 
         recyclerView?.addItemDecoration(SpacesItemDecoration(16));
 
+        myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(mCityContentList,activity)
+        recyclerView!!.adapter = myItemRecyclerViewAdapter
+
         var model = ViewModelProvider(requireActivity(), cityViewModelFactory).get(CitiesViewModel::class.java)
 
         model.getAllCitiesForLocalDB().observe(viewLifecycleOwner,{ listOfCitiesForUser ->
             var cityContentList = Utils.mappingCitiesForUserToCityContent(listOfCitiesForUser)
-            myItemRecyclerViewAdapter = MyItemRecyclerViewAdapter(cityContentList,activity)
-            recyclerView!!.adapter = myItemRecyclerViewAdapter
+
+            for(cityContent in cityContentList) {
+                if(!mCityContentList.contains(cityContent)) {
+                    mCityContentList.add(cityContent)
+                }
+            }
+
+            myItemRecyclerViewAdapter?.notifyDataSetChanged()
+
+
         })
 
 

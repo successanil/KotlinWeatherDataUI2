@@ -32,5 +32,13 @@ class CityContent() : Parcelable{
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        try {
+            return this.cityName == (other as CityContent).cityName
+        } catch (e:Exception) {
+            return false
+        }
+    }
+
 
 }
