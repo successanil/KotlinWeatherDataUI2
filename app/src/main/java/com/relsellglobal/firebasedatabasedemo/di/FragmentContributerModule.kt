@@ -1,5 +1,6 @@
 package com.relsellglobal.firebasedatabasedemo.di
 
+import com.relsellglobal.firebasedatabasedemo.DetailFragment
 import com.relsellglobal.firebasedatabasedemo.FrontListFragment
 import com.relsellglobal.firebasedatabasedemo.ui.addcity.AddCityFragment
 import com.relsellglobal.firebasedatabasedemo.ui.home.HomeFragment
@@ -17,4 +18,8 @@ abstract class FragmentContributerModule {
 
     @ContributesAndroidInjector
     abstract fun contributesAddcityFragment() : AddCityFragment
+
+
+    @ContributesAndroidInjector
+    abstract fun contributesDetailFragment() : DetailFragment
 }

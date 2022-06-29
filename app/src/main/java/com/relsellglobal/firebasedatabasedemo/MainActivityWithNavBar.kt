@@ -48,6 +48,9 @@ class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
     @Inject
     lateinit var addCityFragment : AddCityFragment
 
+    @Inject
+    lateinit var detailFragment: DetailFragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this);
@@ -124,15 +127,9 @@ class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
 
 
     fun launchDetailFragment(item: CityContent) {
-        val fragmentManager = supportFragmentManager
-        val fT = fragmentManager.beginTransaction()
-        val detailFragment = DetailFragment()
         val b = Bundle()
         b.putParcelable("cityContent",item);
-        detailFragment.arguments = b
-        fT.replace(R.id.root,detailFragment)
-        fT.addToBackStack(null)
-        fT.commit()
+        FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root,supportFragmentManager,detailFragment,true,b)
     }
 
     override fun androidInjector(): AndroidInjector<Any> {
