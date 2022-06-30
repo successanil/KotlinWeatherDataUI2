@@ -1,6 +1,7 @@
 package com.relsellglobal.firebasedatabasedemo.di
 
 import com.relsellglobal.firebasedatabasedemo.utils.AppConstants
+import com.relsellglobal.interfacesgateway.network.IGApiService
 import com.relsellglobal.networklib.apiservice.WeatherHerokuApiService
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,12 @@ class NetworkModule {
     @Provides
     fun providesWeatherApiService(retrofit: Retrofit) : WeatherHerokuApiService {
         return retrofit.create(WeatherHerokuApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesIGApiServiceForWeatherService(weatherHerokuApiService: WeatherHerokuApiService) : IGApiService {
+        return weatherHerokuApiService
     }
 
 }

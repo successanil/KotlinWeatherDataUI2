@@ -120,6 +120,7 @@ dependencies {
     implementation project(":modelslib")
     implementation project(":networklib")
     implementation project(":localdblib")
+    implementation project(':interfacesgateway')
 
 
 

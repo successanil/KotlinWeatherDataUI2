@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2019. Relsell Global
- */
-
 package com.relsellglobal.firebasedatabasedemo
 
 
@@ -57,8 +53,8 @@ class DetailFragment @Inject constructor() : DaggerFragment() {
         return v
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         cityContent = arguments?.getParcelable("cityContent")
 
