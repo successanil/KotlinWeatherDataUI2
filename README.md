@@ -11,5 +11,10 @@ Repository now support 2 datasources
 
 Workmanager is added to do the One time db population request in background. 
 
+For starting sample test both unit test and instrumentation test are added modelslib module for demonstrating , independent 
+module for testing a small unit of program. 
+
+
+
 
 

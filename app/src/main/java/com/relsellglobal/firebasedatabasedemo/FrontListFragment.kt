@@ -99,10 +99,6 @@ class FrontListFragment @Inject constructor() : DaggerFragment() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            model.insertDataIntoCityDatabase()
-        }
-
-        CoroutineScope(Dispatchers.IO).launch {
             model.insertDataIntoCitiesForUser()
         }
 
