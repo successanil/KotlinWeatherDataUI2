@@ -2,7 +2,7 @@ package com.relsellglobal.firebasedatabasedemo.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.relsellglobal.firebasedatabasedemo.repository.WeatherDataRepository
+import com.relsellglobal.repositorymodule.WeatherDataRepository
 import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor(private val weatherDataRepository: WeatherDataRepository):

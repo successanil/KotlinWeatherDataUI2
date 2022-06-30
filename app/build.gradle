@@ -121,6 +121,7 @@ dependencies {
     implementation project(":networklib")
     implementation project(":localdblib")
     implementation project(':interfacesgateway')
+    implementation project(":repsitorymodule")
 
 
 

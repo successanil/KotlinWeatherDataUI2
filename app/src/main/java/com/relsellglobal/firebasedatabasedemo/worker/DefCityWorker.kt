@@ -3,7 +3,6 @@ package com.relsellglobal.firebasedatabasedemo.worker
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.relsellglobal.firebasedatabasedemo.repository.WeatherDataRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
