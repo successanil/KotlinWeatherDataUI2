@@ -65,4 +65,5 @@ dependencies {
 
     implementation project(":progressbarlib")
     implementation project(":localdblib")
+    implementation project(":modelslib")
 }
