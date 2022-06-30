@@ -14,6 +14,9 @@ Workmanager is added to do the One time db population request in background.
 For starting sample test both unit test and instrumentation test are added modelslib module for demonstrating , independent 
 module for testing a small unit of program. 
 
+A post on Medium has been added for explaining this.
+https://medium.com/@success.anil.kk/muti-module-android-project-clean-architecture-d082a29d841c
+
 
 
 
