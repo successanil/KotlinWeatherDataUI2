@@ -1,9 +1,8 @@
 package com.relsellglobal.networklib.apiservice
 
-import com.relsellglobal.interfacesgateway.network.IGApiService
+import com.relsellglobal.interfacesgateway.appinterfaces.network.IGApiService
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 

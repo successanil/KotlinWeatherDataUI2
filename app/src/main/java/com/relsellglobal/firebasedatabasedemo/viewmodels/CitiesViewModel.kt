@@ -3,7 +3,7 @@ package com.relsellglobal.firebasedatabasedemo.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.relsellglobal.interfacesgateway.repository.IGRepository
+import com.relsellglobal.interfacesgateway.appinterfaces.repository.IGRepository
 import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork

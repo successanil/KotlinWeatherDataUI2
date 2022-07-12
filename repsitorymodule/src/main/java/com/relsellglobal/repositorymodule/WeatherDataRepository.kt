@@ -4,8 +4,8 @@ package com.relsellglobal.repositorymodule
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.relsellglobal.interfacesgateway.network.IGApiService
-import com.relsellglobal.interfacesgateway.repository.IGRepository
+import com.relsellglobal.interfacesgateway.appinterfaces.network.IGApiService
+import com.relsellglobal.interfacesgateway.appinterfaces.repository.IGRepository
 import com.relsellglobal.localdblib.database.CityDatabase
 import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.localdblib.entities.CityContentDB

@@ -1,4 +1,4 @@
-package com.relsellglobal.interfacesgateway.repository
+package com.relsellglobal.interfacesgateway.appinterfaces.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

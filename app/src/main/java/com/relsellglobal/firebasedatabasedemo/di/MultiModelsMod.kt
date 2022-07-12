@@ -1,6 +1,5 @@
 package com.relsellglobal.firebasedatabasedemo.di
 
-import com.relsellglobal.interfacesgateway.network.IGApiService
 import com.relsellglobal.modelslib.CityContent
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork

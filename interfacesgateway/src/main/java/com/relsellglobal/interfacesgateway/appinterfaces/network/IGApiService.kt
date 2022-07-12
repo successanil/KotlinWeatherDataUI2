@@ -1,4 +1,4 @@
-package com.relsellglobal.interfacesgateway.network
+package com.relsellglobal.interfacesgateway.appinterfaces.network
 
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork

@@ -1,7 +1,7 @@
 package com.relsellglobal.networklib.di
 
 
-import com.relsellglobal.interfacesgateway.network.IGApiService
+import com.relsellglobal.interfacesgateway.appinterfaces.network.IGApiService
 import com.relsellglobal.networklib.apiservice.WeatherHerokuApiService
 import dagger.Module
 import dagger.Provides
