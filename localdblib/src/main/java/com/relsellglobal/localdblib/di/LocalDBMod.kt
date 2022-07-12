@@ -1,17 +1,14 @@
-package com.relsellglobal.firebasedatabasedemo.di
+package com.relsellglobal.localdblib.di
 
 import android.content.Context
 import androidx.room.Room
-import com.relsellglobal.firebasedatabasedemo.MyApplication
 import com.relsellglobal.localdblib.database.CityDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class LocalDBMod(applicationClass: MyApplication) {
-
-    var applicationClass = applicationClass
+class LocalDBMod(var context: Context) {
     lateinit var database: CityDatabase
 
 
@@ -20,7 +17,7 @@ class LocalDBMod(applicationClass: MyApplication) {
     fun getCityDataBase(): CityDatabase {
 
         database = Room.databaseBuilder(
-            applicationClass,
+            context,
             CityDatabase::class.java,
             "cityDatabase"
         ).build()

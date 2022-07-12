@@ -11,9 +11,8 @@ import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.localdblib.entities.CityContentDB
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork
-import javax.inject.Inject
 
-class WeatherDataRepository @Inject constructor(private val weatherHerokuApiService: IGApiService,private val
+class WeatherDataRepository (private val weatherHerokuApiService: IGApiService,private val
 cityDatabase: CityDatabase) : IGRepository {
 
     override suspend fun getWeatherDataCityList(): MutableLiveData<List<CityContentNetwork>> {

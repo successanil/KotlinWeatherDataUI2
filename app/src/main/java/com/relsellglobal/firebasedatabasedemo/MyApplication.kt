@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import com.relsellglobal.firebasedatabasedemo.di.AppComponent
 import com.relsellglobal.firebasedatabasedemo.di.DaggerAppComponent
-import com.relsellglobal.firebasedatabasedemo.di.LocalDBMod
+import com.relsellglobal.localdblib.di.LocalDBMod
 import com.relsellglobal.repositorymodule.WeatherDataRepository
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
