@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.relsellglobal.interfacesgateway.appinterfaces.repository.IGRepository
+import com.relsellglobal.interfacesgateway.usecases.WeatherDataFetchUseCase
 import com.relsellglobal.localdblib.entities.CitiesForUser
 import com.relsellglobal.modelslib.CityContentDetailNetwork
 import com.relsellglobal.modelslib.CityContentNetwork
@@ -35,23 +36,28 @@ class CitiesViewModel(private val weatherDataRepository: IGRepository) : ViewMod
 
 
     private suspend fun loadCities() {
-        citiesContent = weatherDataRepository.getWeatherDataCityList()
+        var weatherDataFetchUseCase = WeatherDataFetchUseCase(weatherDataRepository)
+        citiesContent = weatherDataFetchUseCase.getWeatherDataList()
     }
 
     private suspend fun fetchTempretureForCity(cityName: String) {
-        cityContentNetworkDetail = weatherDataRepository.fetchTempretureForCity(cityName)
+        var weatherDataFetchUseCase = WeatherDataFetchUseCase(weatherDataRepository)
+        cityContentNetworkDetail = weatherDataFetchUseCase.fetchTempretureForCity(cityName)
     }
 
     suspend fun insertDataIntoCityDatabase() {
-        weatherDataRepository.insertDataIntoCityDatabase()
+        var weatherDataFetchUseCase = WeatherDataFetchUseCase(weatherDataRepository)
+        weatherDataFetchUseCase.insertDataIntoCitiesForUser()
     }
 
     suspend fun insertDataIntoCitiesForUser() {
-        weatherDataRepository.insertDataIntoCitiesForUser()
+        var weatherDataFetchUseCase = WeatherDataFetchUseCase(weatherDataRepository)
+        weatherDataFetchUseCase.insertDataIntoCitiesForUser()
     }
 
     fun getAllCitiesForLocalDB() : LiveData<List<CitiesForUser>> {
-        return weatherDataRepository.getAllCitiesForLocalDB()
+        var weatherDataFetchUseCase = WeatherDataFetchUseCase(weatherDataRepository)
+        return weatherDataFetchUseCase.getAllCitiesForLocalDB()
     }
 
 }
