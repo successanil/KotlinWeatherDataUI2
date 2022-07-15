@@ -21,6 +21,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <Button
+
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_gravity="end|center_horizontal"
                 android:background="@drawable/ic_plus_sign_white"
@@ -34,7 +35,7 @@
 
 
 
-    <include layout="@layout/content_main_activity_with_nav_bar" />
+    <include android:id="@+id/content_main_activity_with_nav_bar" layout="@layout/content_main_activity_with_nav_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

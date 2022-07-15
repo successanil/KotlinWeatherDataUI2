@@ -40,7 +40,7 @@ class MyItemRecyclerViewAdapter(
             //lets do some thing
             try {
                 val des = if(activity is MainActivityWithNavBar) activity else null
-                des?.launchDetailFragment(item)
+                des?.launchDetailFragment(item,false)
             } catch (e:Exception) {
                 e.printStackTrace()
             }

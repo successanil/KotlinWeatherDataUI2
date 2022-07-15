@@ -23,6 +23,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp" />
         <Button
+            android:id="@+id/addCityBtn"
             android:layout_alignParentEnd="true"
             android:background="@drawable/ic_plus_sign_white"
             android:layout_width="24dp"

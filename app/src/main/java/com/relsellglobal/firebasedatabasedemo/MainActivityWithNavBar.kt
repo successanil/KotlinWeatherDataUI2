@@ -120,7 +120,8 @@ class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
     }
 
 
-    fun launchDetailFragment(item: CityContent) {
+    fun launchDetailFragment(item: CityContent,hideCityButton:Boolean = false) {
+        hideShowAddCityIcon(hideCityButton)
         val b = Bundle()
         b.putParcelable("cityContent",item);
         FragmentLaunchBackHelpers.launchFragmentCommon(R.id.root,supportFragmentManager,detailFragment,true,b)
@@ -129,6 +130,22 @@ class MainActivityWithNavBar : AppCompatActivity(), HasAndroidInjector {
     override fun androidInjector(): AndroidInjector<Any> {
         return mInjector;
     }
+
+    fun hideShowAddCityIcon(hideCityButton: Boolean = false) {
+        if(!hideCityButton) {
+            binding.appBarMainActivityWithNavBar.contentMainActivityWithNavBar.addCityBtn.visibility = View.GONE
+        } else {
+            binding.appBarMainActivityWithNavBar.contentMainActivityWithNavBar.addCityBtn.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(supportFragmentManager.backStackEntryCount == 0) {
+            hideShowAddCityIcon(true)
+        }
+    }
+
 
 
 
