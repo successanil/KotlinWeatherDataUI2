@@ -3,7 +3,6 @@ package com.relsellglobal.firebasedatabasedemo.helpers
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 
 class FragmentLaunchBackHelpers {
 
@@ -25,6 +24,8 @@ class FragmentLaunchBackHelpers {
                                        outgoingFragment : Fragment){
             supportFragmentManager.popBackStack()
         }
+
+
 
     }
 }

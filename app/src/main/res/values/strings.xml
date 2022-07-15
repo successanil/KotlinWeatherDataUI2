@@ -19,4 +19,6 @@
     <string name="drawer_open">drawer open</string>
     <string name="drawer_close">drawer close</string>
     <string name="jamshedpur">jamshedpur</string>
+    <string name="cityname">cityName</string>
+    <string name="current_weather">Current Weather</string>
 </resources>
